@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crazy Chat — How to Use, Privacy Policy & Terms</title>
+  <meta name="description" content="Official guide, Privacy Policy, and Terms & Conditions for Crazy Chat (crazy-chat.com & crazy-chat.info)." />
+  <!-- App Icon & Browser Favicon (save your icon image as icon.png in the same repo) -->
+  <link rel="icon" type="image/png" href="icon.png" />
+  <link rel="apple-touch-icon" href="icon.png" />
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              950: '#07060d',
+              900: '#0e0b1a',
+              850: '#141026',
+              800: '#1c1636',
+              500: '#8b5cf6',
+              400: '#a78bfa',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Custom ambient geometric background matching the translucent teal & violet icon */
+    body {
+      background-color: #07060d;
+      background-image:
+        radial-gradient(circle at 15% 15%, rgba(45, 212, 191, 0.14), transparent 40%),
+        radial-gradient(circle at 85% 25%, rgba(139, 92, 246, 0.16), transparent 42%),
+        radial-gradient(circle at 50% 85%, rgba(99, 102, 241, 0.12), transparent 48%);
+      background-attachment: fixed;
+    }
+
+    /* Glassmorphism card utility */
+    .glass-card {
+      background: rgba(20, 16, 38, 0.72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(167, 139, 250, 0.14);
+    }
+
+    /* Smooth custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #07060d;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #282047;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #8b5cf6;
+    }
+
+    /* Panel transition */
+    .tab-panel {
+      animation: fadeSlideIn 0.25s ease-out forwards;
+    }
+
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body class="text-slate-200 antialiased min-h-screen flex flex-col selection:bg-violet-500/30 selection:text-violet-200">
+
+  <!-- Top Navigation Bar -->
+  <header class="sticky top-0 z-40 border-b border-violet-500/15 bg-[#07060d]/85 backdrop-blur-xl">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+      <!-- Brand Identity with Custom Glassmorphic Dual-Bubble Icon -->
+      <a href="#guide" onclick="switchTab('guide')" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl overflow-hidden bg-[#101218] border border-cyan-400/25 shadow-lg shadow-cyan-500/15 group-hover:scale-105 transition-transform flex items-center justify-center">
+          <img src="icon.png" alt="Crazy Chat Logo" class="w-full h-full object-cover"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <!-- Fallback SVG matching your dual glass bubble icon if icon.png hasn't been uploaded yet -->
+          <svg style="display:none;" class="w-6 h-6" viewBox="0 0 36 36" fill="none">
+            <defs>
+              <linearGradient id="leftBubble" x1="4" y1="6" x2="22" y2="24" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#5eead4" stop-opacity="0.85" />
+                <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.35" />
+              </linearGradient>
+              <linearGradient id="rightBubble" x1="14" y1="12" x2="32" y2="30" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#a78bfa" stop-opacity="0.8" />
+                <stop offset="100%" stop-color="#6366f1" stop-opacity="0.35" />
+              </linearGradient>
+            </defs>
+            <path d="M13 6C7.48 6 3 9.8 3 14.5c0 2.1.9 4.02 2.38 5.5L4.5 23.5l3.9-1.3c1.42.5 3 .8 4.6.8 5.52 0 10-3.8 10-8.5S18.52 6 13 6z" fill="url(#leftBubble)" stroke="#67e8f9" stroke-width="1.2" />
+            <circle cx="9.5" cy="14.5" r="1.1" fill="#ecfeff" />
+            <circle cx="13" cy="14.5" r="1.1" fill="#ecfeff" />
+            <circle cx="16.5" cy="14.5" r="1.1" fill="#ecfeff" />
+            <path d="M23 12c5.52 0 10 3.8 10 8.5 0 2.1-.9 4.02-2.38 5.5l.88 3.5-3.9-1.3c-1.42.5-3 .8-4.6.8-5.52 0-10-3.8-10-8.5S17.48 12 23 12z" fill="url(#rightBubble)" stroke="#c4b5fd" stroke-width="1.2" />
+            <circle cx="19.5" cy="20.5" r="1.1" fill="#f5f3ff" />
+            <circle cx="23" cy="20.5" r="1.1" fill="#f5f3ff" />
+            <circle cx="26.5" cy="20.5" r="1.1" fill="#f5f3ff" />
+          </svg>
+        </div>
+        <div>
+          <span class="font-display font-bold tracking-wider text-sm sm:text-base uppercase text-white block leading-none">
+            Crazy Chat
+          </span>
+          <span class="text-[11px] text-cyan-300/80 font-medium">crazy-chat.info</span>
+        </div>
+      </a>
+
+      <!-- Primary Launch CTA -->
+      <a href="https://crazy-chat.com" target="_blank" rel="noopener noreferrer"
+         class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-teal-500 via-indigo-500 to-violet-600 hover:from-teal-400 hover:to-violet-500 shadow-md shadow-indigo-600/25 transition-all active:scale-95">
+        <span>Open Crazy Chat</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="pt-10 pb-6 sm:pt-14 sm:pb-8 px-4 sm:px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-500/10 border border-violet-400/20 text-violet-300 text-xs font-medium mb-4">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        Official Help Center & Legal Documentation
+      </div>
+      <h1 class="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
+        Everything about <span class="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-fuchsia-300 to-indigo-400">Crazy Chat</span>
+      </h1>
+      <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+        Learn how to start instant chats with friends or CrazyChatAI without room codes, and review our transparent Privacy Policy and Terms of Service.
+      </p>
+
+      <!-- Interactive Section Switcher Tabs -->
+      <div class="mt-8 inline-flex flex-wrap justify-center p-1.5 rounded-2xl glass-card gap-1.5" role="tablist" aria-label="Documentation Sections">
+        <button id="tab-guide" onclick="switchTab('guide')" role="tab" aria-selected="true"
+                class="tab-btn px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 bg-violet-600 text-white shadow-lg shadow-violet-600/30">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          How to Use
+        </button>
+
+        <button id="tab-privacy" onclick="switchTab('privacy')" role="tab" aria-selected="false"
+                class="tab-btn px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 text-slate-300 hover:text-white hover:bg-white/5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+          Privacy Policy
+        </button>
+
+        <button id="tab-terms" onclick="switchTab('terms')" role="tab" aria-selected="false"
+                class="tab-btn px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 text-slate-300 hover:text-white hover:bg-white/5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          Terms & Conditions
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Area -->
+  <main class="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 pb-16">
+
+    <!-- ========================================================= -->
+    <!-- PANEL 1: HOW TO USE CRAZY CHAT                            -->
+    <!-- ========================================================= -->
+    <section id="panel-guide" class="tab-panel space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-violet-500/15">
+          <div>
+            <h2 class="font-display text-2xl font-bold text-white">How to Use Crazy Chat</h2>
+            <p class="text-sm text-slate-400 mt-1">Simple, fast messaging directly from your browser—no room codes or downloads required.</p>
+          </div>
+          <span class="self-start sm:self-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">
+            Free & Web-Based
+          </span>
+        </div>
+
+        <!-- 4-Step Guide Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-6">
+          <!-- Step 1 -->
+          <div class="rounded-2xl bg-[#0b0917]/90 border border-violet-500/15 p-5 hover:border-violet-500/35 transition-colors">
+            <div class="w-9 h-9 rounded-xl bg-violet-500/15 text-violet-300 font-display font-bold flex items-center justify-center text-sm mb-3">
+              01
+            </div>
+            <h3 class="font-semibold text-white text-base mb-1.5">Sign In with Google</h3>
+            <p class="text-sm text-slate-400 leading-relaxed">
+              Visit <a href="https://crazy-chat.com" class="text-violet-400 hover:underline font-medium">crazy-chat.com</a> and click <strong class="text-slate-200">"Sign in with Google"</strong>. Your Google profile name, email, and avatar are used automatically so you never have to remember extra passwords.
+            </p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="rounded-2xl bg-[#0b0917]/90 border border-violet-500/15 p-5 hover:border-violet-500/35 transition-colors">
+            <div class="w-9 h-9 rounded-xl bg-violet-500/15 text-violet-300 font-display font-bold flex items-center justify-center text-sm mb-3">
+              02
+            </div>
+            <h3 class="font-semibold text-white text-base mb-1.5">Start a Chat by Email</h3>
+            <p class="text-sm text-slate-400 leading-relaxed">
+              No room codes needed! Type your friend's Gmail/Google address into the <strong class="text-slate-200">"Start a chat by email"</strong> bar at the top of the Chats screen and tap <strong class="text-slate-200">Start</strong>.
+            </p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="rounded-2xl bg-[#0b0917]/90 border border-violet-500/15 p-5 hover:border-violet-500/35 transition-colors">
+            <div class="w-9 h-9 rounded-xl bg-violet-500/15 text-violet-300 font-display font-bold flex items-center justify-center text-sm mb-3">
+              03
+            </div>
+            <h3 class="font-semibold text-white text-base mb-1.5">Voice Calls, Voice Notes & Text</h3>
+            <p class="text-sm text-slate-400 leading-relaxed">
+              Chat in real time with instant text messages, send crisp <strong class="text-slate-200">voice messages</strong>, or start live <strong class="text-slate-200">voice calls</strong> directly in your browser without extra apps.
+            </p>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="rounded-2xl bg-[#0b0917]/90 border border-violet-500/15 p-5 hover:border-violet-500/35 transition-colors">
+            <div class="w-9 h-9 rounded-xl bg-violet-500/15 text-violet-300 font-display font-bold flex items-center justify-center text-sm mb-3">
+              04
+            </div>
+            <h3 class="font-semibold text-white text-base mb-1.5">Ask CrazyChatAI Anything</h3>
+            <p class="text-sm text-slate-400 leading-relaxed">
+              Need quick answers, ideas, or homework help? Tap <strong class="text-slate-200">CrazyChatAI</strong> pinned in your chat list anytime for instant AI responses.
+            </p>
+          </div>
+        </div>
+
+        <!-- Pro Tips Box -->
+        <div class="mt-6 rounded-2xl bg-gradient-to-r from-violet-950/60 to-indigo-950/60 border border-violet-400/20 p-5">
+          <h4 class="font-semibold text-violet-200 text-sm flex items-center gap-2 mb-2.5">
+            <svg class="w-4 h-4 text-violet-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Quick Tips for the Best Experience
+          </h4>
+          <ul class="text-xs sm:text-sm text-slate-300 space-y-2 list-disc list-inside">
+            <li><strong class="text-white">Allow Microphone Access:</strong> When prompted by Safari or Chrome, tap <em>Allow</em> so you can make live voice calls and record voice messages smoothly.</li>
+            <li><strong class="text-white">Add to Home Screen (iPhone/Android):</strong> Open <span class="text-violet-300">crazy-chat.com</span> in your mobile browser, tap <em>Share → Add to Home Screen</em> to launch Crazy Chat like a native app.</li>
+            <li><strong class="text-white">Always Use HTTPS:</strong> Make sure the address bar starts with <code class="text-violet-300 bg-black/30 px-1.5 py-0.5 rounded">https://crazy-chat.com</code> for encrypted connections and browser call permissions.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- PANEL 2: PRIVACY POLICY                                   -->
+    <!-- ========================================================= -->
+    <section id="panel-privacy" class="tab-panel hidden space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-6 border-b border-violet-500/15">
+          <div>
+            <h2 class="font-display text-2xl font-bold text-white">Privacy Policy</h2>
+            <p class="text-sm text-slate-400 mt-1">Applies to <strong class="text-slate-200">crazy-chat.com</strong> and <strong class="text-slate-200">crazy-chat.info</strong></p>
+          </div>
+          <span class="text-xs text-violet-300 bg-violet-500/10 border border-violet-400/20 px-3 py-1 rounded-full self-start sm:self-center">
+            Last Updated: November 2026
+          </span>
+        </div>
+
+        <div class="mt-6 space-y-6 text-sm sm:text-base text-slate-300 leading-relaxed">
+          <div>
+            <h3 class="font-display font-bold text-white text-lg mb-2">1. Information We Collect</h3>
+            <p class="text-slate-400 mb-2">
+              Crazy Chat is designed to collect only the minimum information needed to let you sign in and message others:
+            </p>
+            <ul class="list-disc list-inside space-y-1.5 text-slate-300 text-sm">
+              <li><strong class="text-white">Google Account Information:</strong> When you sign in with Google, we receive your display name, email address, Google user ID, and profile picture URL.</li>
+              <li><strong class="text-white">Chat & Voice Content:</strong> Text messages, voice recordings, and timestamps you send to other users or to CrazyChatAI so they can be delivered and displayed in your chat history.</li>
+              <li><strong class="text-white">Voice Call Signaling & Connection Data:</strong> Temporary WebRTC signaling data and network routing information (IP address/ICE candidates) needed to connect live peer-to-peer voice calls.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="font-display font-bold text-white text-lg mb-2">2. How We Use Your Information</h3>
+            <ul class="list-disc list-inside space-y-1.5 text-slate-300 text-sm">
+              <li>To authenticate your identity securely via Google OAuth / Firebase Authentication.</li>
+              <li>To allow other signed-in users to find, message, and call you using your email address without needing room codes.</li>
+              <li>To connect live voice calls, deliver voice notes and text chats, and generate replies when you interact with <strong class="text-white">CrazyChatAI</strong>.</li>
+              <li>To maintain service security, prevent spam/abuse, and troubleshoot technical issues.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="font-display font-bold text-white text-lg mb-2">3. Microphone & Live Voice Calls</h3>
+            <p class="text-sm text-slate-400">
+              Crazy Chat only accesses your device's microphone when you start/answer a <strong class="text-white">live voice call</strong> or explicitly press the record button to send a voice message. Live voice call audio is streamed in real time via encrypted WebRTC connections and is <strong class="text-white">not recorded or stored</strong> on our servers.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-display font-bold text-white text-lg mb-2">4. Data Sharing & Third-Party Services</h3>
+            <p class="text-sm text-slate-400 mb-2">
+              <strong class="text-white">We do not sell, rent, or trade your personal data or messages to advertisers.</strong> Your data is processed solely through trusted infrastructure providers needed to run the app:
+            </p>
+            <ul class="list-disc list-inside space-y-1.5 text-slate-300 text-sm">
+              <li><strong class="text-white">Google / Firebase:</strong> Used for Google Sign-In authentication and secure real-time cloud message/media storage.</li>
+              <li><strong class="text-white">AI Processing Providers:</strong> Prompts you explicitly send inside the <em>CrazyChatAI</em> chat are processed to generate responses.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="font-display font-bold text-white text-lg mb-2">5. Data Security & Your Choices</h3>
+            <p class="text-sm text-slate-400">
+              All traffic between your browser and Crazy Chat is encrypted using HTTPS/TLS. You may sign out at any time using the sign-out icon in the top-right corner of the app, revoke Crazy Chat's access anytime from your <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer" class="text-violet-400 hover:underline">Google Account Permissions</a> page, or request deletion of your account data by contacting us.
+            </p>
+          </div>
+
+          <div class="rounded-2xl bg-[#0b0917]/90 border border-violet-500/15 p-4 text-sm">
+            <strong class="text-white block mb-1">Privacy Contact</strong>
+            <span class="text-slate-400">For any privacy questions or data deletion requests, reach out via our official repository or support contact at </span>
+            <span class="text-violet-300 font-medium">admin@crazy-chat.com</span>.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- PANEL 3: TERMS & CONDITIONS                               -->
+    <!-- ========================================================= -->
+    <section id="panel-terms" class="tab-panel hidden space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-6 border-b border-violet-500/15">
+          <div>
+            <h2 class="font-display text-2xl font-bold text-white">Terms & Conditions</h2>
+            <p class="text-sm text-slate-400 mt-1">Rules and guidelines for using Crazy Chat</p>
+          </div>
+          <span class="text-xs text-violet-300 bg-violet-500/10 border border-violet-400/20 px-3 py-1 rounded-full self-start sm:self-center">
+            Effective: November 2026
+          </span>
+        </div>
+
+        <div class="mt-6 space-y-6 text-sm sm:text-base text-slate-300 leading-relaxed">
+          <div>
+            <h3 class="font-display font-bold text-white text-lg mb-2">1. Acceptance of Terms</h3>
+            <p class="text-sm text-slate-400">
+              By accessing or using <strong class="text-slate-200">crazy-chat.com</strong> or <strong class="text-slate-200">crazy-chat.info</strong>, you agree to follow these Terms & Conditions. If you do not agree with these terms, please discontinue use of the service.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-display font-bold text-white text-lg mb-2">2. Eligibility & Account Responsibility</h3>
+            <p class="text-sm text-slate-400">
+              You must be at least 13 years old (or the minimum age required in your country to use a Google Account) to use Crazy Chat. You are responsible for keeping your Google account secure and for all messages sent from your account.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-display font-bold text-white text-lg mb-2">3. Acceptable Use & Community Rules</h3>
+            <p class="text-sm text-slate-400 mb-2">When chatting or placing voice calls on Crazy Chat, you agree <strong class="text-white">not</strong> to:</p>
+            <ul class="list-disc list-inside space-y-1.5 text-slate-300 text-sm">
+              <li>Send spam, unsolicited bulk messages, prank/nuisance calls, phishing links, or malware.</li>
+              <li>Harass, bully, threaten, impersonate, or dox other users.</li>
+              <li>Share illegal, hateful, sexually explicit, or violent content via text, voice messages, or live voice calls.</li>
+              <li>Attempt to reverse-engineer, overload, scrape, or disrupt Crazy Chat's servers, Firebase database, or AI endpoints.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="font-display font-bold text-white text-lg mb-2">4. CrazyChatAI Disclaimer</h3>
+            <p class="text-sm text-slate-400">
+              Responses generated by <strong class="text-slate-200">CrazyChatAI</strong> are produced automatically by artificial intelligence for informational and entertainment purposes. AI outputs may occasionally contain inaccuracies—please verify important facts independently and do not treat AI replies as professional medical, legal, or financial advice.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-display font-bold text-white text-lg mb-2">5. Service Availability & Limitation of Liability</h3>
+            <p class="text-sm text-slate-400">
+              Crazy Chat is provided on an <strong class="text-slate-200">"as-is" and "as-available"</strong> basis. While we strive for reliable uptime, we may update, modify, or temporarily pause features at any time without prior notice and are not liable for accidental message loss or service interruptions.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-display font-bold text-white text-lg mb-2">6. Changes to These Terms</h3>
+            <p class="text-sm text-slate-400">
+              We may update these Terms & Conditions or our Privacy Policy as Crazy Chat evolves with new features. Continued use of Crazy Chat after updates are posted constitutes acceptance of the revised terms.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-violet-500/15 bg-[#05040a]/90 py-8 px-4 sm:px-6">
+    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+      <div class="flex items-center gap-2">
+        <span class="font-display font-bold text-slate-200">CRAZY CHAT</span>
+        <span>•</span>
+        <span>&copy; <span id="year"></span> All rights reserved.</span>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <button onclick="switchTab('guide')" class="hover:text-violet-300 transition-colors">How to Use</button>
+        <button onclick="switchTab('privacy')" class="hover:text-violet-300 transition-colors">Privacy Policy</button>
+        <button onclick="switchTab('terms')" class="hover:text-violet-300 transition-colors">Terms & Conditions</button>
+        <a href="https://crazy-chat.com" target="_blank" rel="noopener noreferrer" class="text-violet-400 hover:text-violet-300 font-medium transition-colors">
+          Launch crazy-chat.com ↗
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive Tab Switching & Hash Routing Script -->
+  <script>
+    // Set current copyright year automatically
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const validTabs = ['guide', 'privacy', 'terms'];
+
+    /**
+     * Switches the visible documentation panel and updates active button styles + URL hash.
+     * @param {string} tabName - 'guide' | 'privacy' | 'terms'
+     */
+    function switchTab(tabName) {
+      if (!validTabs.includes(tabName)) {
+        tabName = 'guide';
+      }
+
+      // Hide all panels and reset tab button states
+      validTabs.forEach((name) => {
+        const panel = document.getElementById(`panel-${name}`);
+        const btn = document.getElementById(`tab-${name}`);
+
+        if (name === tabName) {
+          panel.classList.remove('hidden');
+          btn.setAttribute('aria-selected', 'true');
+          btn.classList.add('bg-violet-600', 'text-white', 'shadow-lg', 'shadow-violet-600/30');
+          btn.classList.remove('text-slate-300', 'hover:text-white', 'hover:bg-white/5');
+        } else {
+          panel.classList.add('hidden');
+          btn.setAttribute('aria-selected', 'false');
+          btn.classList.remove('bg-violet-600', 'text-white', 'shadow-lg', 'shadow-violet-600/30');
+          btn.classList.add('text-slate-300', 'hover:text-white', 'hover:bg-white/5');
+        }
+      });
+
+      // Update URL hash so direct links like crazy-chat.info/#privacy work smoothly
+      if (window.location.hash !== `#${tabName}`) {
+        history.replaceState(null, '', `#${tabName}`);
+      }
+    }
+
+    // Open the matching tab automatically if the user visits with #privacy or #terms in the URL
+    window.addEventListener('DOMContentLoaded', () => {
+      const initialHash = window.location.hash.replace('#', '').toLowerCase();
+      if (validTabs.includes(initialHash)) {
+        switchTab(initialHash);
+      }
+    });
+  </script>
+</body>
+</html>
